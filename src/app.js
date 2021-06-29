@@ -39,6 +39,8 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
     const { username, room } = req.query
+    if (username==null || username=='')
+        return res.redirect('/login')
     res.locals.users = Object.keys(users[room] || {})
     res.render('index', { username, room })
 })
